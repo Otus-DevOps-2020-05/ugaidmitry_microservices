@@ -1,0 +1,1098 @@
+# Logfile created on 2020-07-05 13:16:31 +0000 by logger.rb/66358
+[2020-07-05T13:16:32+00:00] INFO: Started chef-zero at chefzero://localhost:1 with repository at /opt/gitlab/embedded
+  One version per cookbook
+
+[2020-07-05T13:16:32+00:00] INFO: *** Chef 14.14.29 ***
+[2020-07-05T13:16:32+00:00] INFO: Platform: x86_64-linux
+[2020-07-05T13:16:32+00:00] INFO: Chef-client pid: 22
+[2020-07-05T13:16:32+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+[2020-07-05T13:16:33+00:00] WARN: Plugin Network: unable to detect ipaddress
+[2020-07-05T13:16:34+00:00] INFO: Setting the run_list to ["recipe[gitlab]"] from CLI options
+[2020-07-05T13:16:34+00:00] INFO: Run List is [recipe[gitlab]]
+[2020-07-05T13:16:34+00:00] INFO: Run List expands to [gitlab]
+[2020-07-05T13:16:34+00:00] INFO: Starting Chef Run for gitlab.example.com
+[2020-07-05T13:16:34+00:00] INFO: Running start handlers
+[2020-07-05T13:16:34+00:00] INFO: Start handlers complete.
+[2020-07-05T13:16:35+00:00] INFO: Loading cookbooks [gitlab@0.0.1, package@0.1.0, postgresql@0.1.0, redis@0.1.0, monitoring@0.1.0, registry@0.1.0, mattermost@0.1.0, consul@0.1.0, gitaly@0.1.0, praefect@0.1.0, letsencrypt@0.1.0, nginx@0.1.0, runit@5.1.3, acme@4.1.1, crond@0.1.0]
+[2020-07-05T13:16:39+00:00] INFO: Skipped selecting an init system because it was explicitly disabled
+[2020-07-05T13:16:40+00:00] INFO: The plugin path /etc/chef/ohai/plugins does not exist. Skipping...
+[2020-07-05T13:16:41+00:00] WARN: only_if block for file[/var/opt/gitlab/gitlab-rails/etc/gitlab-registry.key] returned a string, did you mean to run a command?
+[2020-07-05T13:16:41+00:00] WARN: only_if block for templatesymlink[Create a gitlab_pages_secret and create a symlink to Rails root] returned a string, did you mean to run a command?
+[2020-07-05T13:16:41+00:00] INFO: link[/opt/gitlab/service/redis] created
+[2020-07-05T13:16:42+00:00] INFO: Retrying execution of execute[/opt/gitlab/bin/gitlab-ctl start redis], 19 attempts left
+[2020-07-05T13:16:45+00:00] INFO: Retrying execution of execute[/opt/gitlab/bin/gitlab-ctl start redis], 18 attempts left
+[2020-07-05T13:16:48+00:00] INFO: execute[/opt/gitlab/bin/gitlab-ctl start redis] ran successfully
+[2020-07-05T13:16:48+00:00] INFO: link[/opt/gitlab/service/gitaly] created
+[2020-07-05T13:16:49+00:00] INFO: Retrying execution of execute[/opt/gitlab/bin/gitlab-ctl start gitaly], 19 attempts left
+[2020-07-05T13:16:51+00:00] INFO: execute[/opt/gitlab/bin/gitlab-ctl start gitaly] ran successfully
+[2020-07-05T13:16:52+00:00] INFO: link[/opt/gitlab/service/postgresql] created
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/supervise/status] owner changed to 996
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/supervise/status] group changed to 996
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/supervise/status] updated atime and mtime to 2020-07-05 13:16:52 +0000
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/log/supervise/status] owner changed to 996
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/log/supervise/status] group changed to 996
+[2020-07-05T13:16:52+00:00] INFO: file[/opt/gitlab/service/postgresql/log/supervise/status] updated atime and mtime to 2020-07-05 13:16:52 +0000
+[2020-07-05T13:16:53+00:00] INFO: Retrying execution of execute[/opt/gitlab/bin/gitlab-ctl start postgresql], 19 attempts left
+[2020-07-05T13:16:55+00:00] INFO: execute[/opt/gitlab/bin/gitlab-ctl start postgresql] ran successfully
+[2020-07-05T13:16:56+00:00] INFO: Retrying execution of execute[create gitlab postgresql user], 19 attempts left
+[2020-07-05T13:16:58+00:00] INFO: Retrying execution of execute[create gitlab postgresql user], 18 attempts left
+[2020-07-05T13:17:00+00:00] INFO: Retrying execution of execute[create gitlab postgresql user], 17 attempts left
+[2020-07-05T13:17:02+00:00] INFO: Retrying execution of execute[create gitlab postgresql user], 16 attempts left
+[2020-07-05T13:20:17+00:00] INFO: Running queued delayed notifications before re-raising exception
+[2020-07-05T13:20:17+00:00] ERROR: Running exception handlers
+[2020-07-05T13:20:17+00:00] ERROR: Exception handlers complete
+[2020-07-05T13:20:17+00:00] FATAL: Stacktrace dumped to /opt/gitlab/embedded/cookbooks/cache/chef-stacktrace.out
+[2020-07-05T13:20:17+00:00] FATAL: Please provide the contents of the stacktrace.out file if you file a bug report
+[2020-07-05T13:20:17+00:00] FATAL: Mixlib::ShellOut::ShellCommandFailed: bash[migrate gitlab-rails database] (gitlab::database_migrations line 55) had an error: Mixlib::ShellOut::ShellCommandFailed: Expected process to exit with [0], but received '1'
+---- Begin output of "bash"  "/tmp/chef-script20200705-22-ifsggo" ----
+STDOUT: == 20181228175414 InitSchema: migrating =======================================
+-- enable_extension("pg_trgm")
+   -> 0.1018s
+-- enable_extension("plpgsql")
+   -> 0.0084s
+-- create_table("abuse_reports", {:id=>:serial, :force=>:cascade})
+   -> 2.5044s
+-- create_table("appearances", {:id=>:serial, :force=>:cascade})
+   -> 0.5638s
+-- create_table("application_setting_terms", {:id=>:serial, :force=>:cascade})
+   -> 0.3315s
+-- create_table("application_settings", {:id=>:serial, :force=>:cascade})
+   -> 1.3156s
+-- create_table("audit_events", {:id=>:serial, :force=>:cascade})
+   -> 0.6388s
+-- create_table("award_emoji", {:id=>:serial, :force=>:cascade})
+   -> 0.5145s
+-- create_table("badges", {:id=>:serial, :force=>:cascade})
+   -> 1.1719s
+-- create_table("board_group_recent_visits", {:force=>:cascade})
+   -> 1.0393s
+-- create_table("board_project_recent_visits", {:force=>:cascade})
+   -> 0.4401s
+-- create_table("boards", {:id=>:serial, :force=>:cascade})
+   -> 0.3562s
+-- create_table("broadcast_messages", {:id=>:serial, :force=>:cascade})
+   -> 0.5972s
+-- create_table("chat_names", {:id=>:serial, :force=>:cascade})
+   -> 0.6967s
+-- create_table("chat_teams", {:id=>:serial, :force=>:cascade})
+   -> 0.3977s
+-- create_table("ci_build_trace_chunks", {:force=>:cascade})
+   -> 1.1675s
+-- create_table("ci_build_trace_section_names", {:id=>:serial, :force=>:cascade})
+   -> 0.4643s
+-- create_table("ci_build_trace_sections", {:id=>:serial, :force=>:cascade})
+   -> 0.4473s
+-- create_table("ci_builds", {:id=>:serial, :force=>:cascade})
+   -> 3.3239s
+-- create_table("ci_builds_metadata", {:id=>:serial, :force=>:cascade})
+   -> 0.7950s
+-- create_table("ci_builds_runner_session", {:force=>:cascade})
+   -> 0.3986s
+-- create_table("ci_group_variables", {:id=>:serial, :force=>:cascade})
+   -> 0.3916s
+-- create_table("ci_job_artifacts", {:id=>:serial, :force=>:cascade})
+   -> 0.9203s
+-- create_table("ci_pipeline_chat_data", {:force=>:cascade})
+   -> 0.4579s
+-- create_table("ci_pipeline_schedule_variables", {:id=>:serial, :force=>:cascade})
+   -> 0.5722s
+-- create_table("ci_pipeline_schedules", {:id=>:serial, :force=>:cascade})
+   -> 0.7823s
+-- create_table("ci_pipeline_variables", {:id=>:serial, :force=>:cascade})
+   -> 0.5738s
+-- create_table("ci_pipelines", {:id=>:serial, :force=>:cascade})
+   -> 2.4345s
+-- create_table("ci_runner_namespaces", {:id=>:serial, :force=>:cascade})
+   -> 0.5393s
+-- create_table("ci_runner_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.4335s
+-- create_table("ci_runners", {:id=>:serial, :force=>:cascade})
+   -> 1.3537s
+-- create_table("ci_stages", {:id=>:serial, :force=>:cascade})
+   -> 1.0648s
+-- create_table("ci_trigger_requests", {:id=>:serial, :force=>:cascade})
+   -> 0.6156s
+-- create_table("ci_triggers", {:id=>:serial, :force=>:cascade})
+   -> 0.3657s
+-- create_table("ci_variables", {:id=>:serial, :force=>:cascade})
+   -> 0.3842s
+-- create_table("cluster_groups", {:id=>:serial, :force=>:cascade})
+   -> 0.5467s
+-- create_table("cluster_platforms_kubernetes", {:id=>:serial, :force=>:cascade})
+   -> 0.4060s
+-- create_table("cluster_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.4902s
+-- create_table("cluster_providers_gcp", {:id=>:serial, :force=>:cascade})
+   -> 0.5640s
+-- create_table("clusters", {:id=>:serial, :force=>:cascade})
+   -> 1.0120s
+-- create_table("clusters_applications_cert_managers", {:id=>:serial, :force=>:cascade})
+   -> 0.3148s
+-- create_table("clusters_applications_helm", {:id=>:serial, :force=>:cascade})
+   -> 0.3487s
+-- create_table("clusters_applications_ingress", {:id=>:serial, :force=>:cascade})
+   -> 0.6377s
+-- create_table("clusters_applications_jupyter", {:id=>:serial, :force=>:cascade})
+   -> 0.6154s
+-- create_table("clusters_applications_knative", {:id=>:serial, :force=>:cascade})
+   -> 0.6318s
+-- create_table("clusters_applications_prometheus", {:id=>:serial, :force=>:cascade})
+   -> 0.7226s
+-- create_table("clusters_applications_runners", {:id=>:serial, :force=>:cascade})
+   -> 0.6973s
+-- create_table("clusters_kubernetes_namespaces", {:force=>:cascade})
+   -> 0.6005s
+-- create_table("container_repositories", {:id=>:serial, :force=>:cascade})
+   -> 0.3985s
+-- create_table("conversational_development_index_metrics", {:id=>:serial, :force=>:cascade})
+   -> 0.1749s
+-- create_table("deploy_keys_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.6308s
+-- create_table("deploy_tokens", {:id=>:serial, :force=>:cascade})
+   -> 2.1004s
+-- create_table("deployments", {:id=>:serial, :force=>:cascade})
+   -> 1.4182s
+-- create_table("emails", {:id=>:serial, :force=>:cascade})
+   -> 0.5411s
+-- create_table("environments", {:id=>:serial, :force=>:cascade})
+   -> 0.7534s
+-- create_table("events", {:id=>:serial, :force=>:cascade})
+   -> 1.3829s
+-- create_table("feature_gates", {:id=>:serial, :force=>:cascade})
+   -> 0.3582s
+-- create_table("features", {:id=>:serial, :force=>:cascade})
+   -> 0.4881s
+-- create_table("fork_network_members", {:id=>:serial, :force=>:cascade})
+   -> 0.4889s
+-- create_table("fork_networks", {:id=>:serial, :force=>:cascade})
+   -> 0.1996s
+-- create_table("forked_project_links", {:id=>:serial, :force=>:cascade})
+   -> 0.2400s
+-- create_table("gpg_key_subkeys", {:id=>:serial, :force=>:cascade})
+   -> 0.5906s
+-- create_table("gpg_keys", {:id=>:serial, :force=>:cascade})
+   -> 0.6623s
+-- create_table("gpg_signatures", {:id=>:serial, :force=>:cascade})
+   -> 0.6405s
+-- create_table("group_custom_attributes", {:id=>:serial, :force=>:cascade})
+   -> 0.3485s
+-- create_table("group_group_links", {:force=>:cascade})
+   -> 0.5224s
+-- create_table("identities", {:id=>:serial, :force=>:cascade})
+   -> 0.5400s
+-- create_table("import_export_uploads", {:id=>:serial, :force=>:cascade})
+   -> 0.5716s
+-- create_table("internal_ids", {:force=>:cascade})
+   -> 0.7220s
+-- create_table("issue_assignees", {:id=>false, :force=>:cascade})
+   -> 0.2895s
+-- create_table("issue_metrics", {:id=>:serial, :force=>:cascade})
+   -> 0.1676s
+-- create_table("issues", {:id=>:serial, :force=>:cascade})
+   -> 2.2186s
+-- create_table("keys", {:id=>:serial, :force=>:cascade})
+   -> 0.6852s
+-- create_table("label_links", {:id=>:serial, :force=>:cascade})
+   -> 1.0525s
+-- create_table("label_priorities", {:id=>:serial, :force=>:cascade})
+   -> 0.4477s
+-- create_table("labels", {:id=>:serial, :force=>:cascade})
+   -> 1.0637s
+-- create_table("lfs_file_locks", {:id=>:serial, :force=>:cascade})
+   -> 0.4234s
+-- create_table("lfs_objects", {:id=>:serial, :force=>:cascade})
+   -> 0.4429s
+-- create_table("lfs_objects_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.1827s
+-- create_table("lists", {:id=>:serial, :force=>:cascade})
+   -> 0.5137s
+-- create_table("members", {:id=>:serial, :force=>:cascade})
+   -> 0.6799s
+-- create_table("merge_request_diff_commits", {:id=>false, :force=>:cascade})
+   -> 0.2252s
+-- create_table("merge_request_diff_files", {:id=>false, :force=>:cascade})
+   -> 0.2405s
+-- create_table("merge_request_diffs", {:id=>:serial, :force=>:cascade})
+   -> 0.3071s
+-- create_table("merge_request_metrics", {:id=>:serial, :force=>:cascade})
+   -> 1.1258s
+-- create_table("merge_requests", {:id=>:serial, :force=>:cascade})
+   -> 2.3810s
+-- create_table("merge_requests_closing_issues", {:id=>:serial, :force=>:cascade})
+   -> 0.3732s
+-- create_table("milestones", {:id=>:serial, :force=>:cascade})
+   -> 0.9876s
+-- create_table("namespaces", {:id=>:serial, :force=>:cascade})
+   -> 1.5487s
+-- create_table("note_diff_files", {:id=>:serial, :force=>:cascade})
+   -> 0.3236s
+-- create_table("notes", {:id=>:serial, :force=>:cascade})
+   -> 0.9875s
+-- create_table("notification_settings", {:id=>:serial, :force=>:cascade})
+   -> 0.6883s
+-- create_table("oauth_access_grants", {:id=>:serial, :force=>:cascade})
+   -> 0.5402s
+-- create_table("oauth_access_tokens", {:id=>:serial, :force=>:cascade})
+   -> 0.6047s
+-- create_table("oauth_applications", {:id=>:serial, :force=>:cascade})
+   -> 0.5467s
+-- create_table("oauth_openid_requests", {:id=>:serial, :force=>:cascade})
+   -> 1.5135s
+-- create_table("pages_domains", {:id=>:serial, :force=>:cascade})
+   -> 0.6066s
+-- create_table("personal_access_tokens", {:id=>:serial, :force=>:cascade})
+   -> 0.5218s
+-- create_table("pool_repositories", {:force=>:cascade})
+   -> 0.5982s
+-- create_table("programming_languages", {:id=>:serial, :force=>:cascade})
+   -> 0.4887s
+-- create_table("project_authorizations", {:id=>false, :force=>:cascade})
+   -> 0.1082s
+-- create_table("project_auto_devops", {:id=>:serial, :force=>:cascade})
+   -> 0.3034s
+-- create_table("project_ci_cd_settings", {:id=>:serial, :force=>:cascade})
+   -> 0.3679s
+-- create_table("project_custom_attributes", {:id=>:serial, :force=>:cascade})
+   -> 0.7138s
+-- create_table("project_daily_statistics", {:force=>:cascade})
+   -> 0.3565s
+-- create_table("project_deploy_tokens", {:id=>:serial, :force=>:cascade})
+   -> 0.3231s
+-- create_table("project_error_tracking_settings", {:primary_key=>"project_id", :id=>:integer, :default=>nil, :force=>:cascade})
+   -> 0.1576s
+-- create_table("project_features", {:id=>:serial, :force=>:cascade})
+   -> 0.1743s
+-- create_table("project_group_links", {:id=>:serial, :force=>:cascade})
+   -> 0.3824s
+-- create_table("project_import_data", {:id=>:serial, :force=>:cascade})
+   -> 0.3236s
+-- create_table("project_mirror_data", {:id=>:serial, :force=>:cascade})
+   -> 0.7372s
+-- create_table("project_repositories", {:force=>:cascade})
+   -> 0.6639s
+-- create_table("project_statistics", {:id=>:serial, :force=>:cascade})
+   -> 0.4303s
+-- create_table("projects", {:id=>:serial, :force=>:cascade})
+   -> 2.2564s
+-- create_table("prometheus_metrics", {:id=>:serial, :force=>:cascade})
+   -> 0.6407s
+-- create_table("protected_branch_merge_access_levels", {:id=>:serial, :force=>:cascade})
+   -> 0.2323s
+-- create_table("protected_branch_push_access_levels", {:id=>:serial, :force=>:cascade})
+   -> 0.2731s
+-- create_table("protected_branches", {:id=>:serial, :force=>:cascade})
+   -> 0.2322s
+-- create_table("protected_tag_create_access_levels", {:id=>:serial, :force=>:cascade})
+   -> 0.2740s
+-- create_table("protected_tags", {:id=>:serial, :force=>:cascade})
+   -> 0.7710s
+-- create_table("push_event_payloads", {:id=>false, :force=>:cascade})
+   -> 0.2652s
+-- create_table("redirect_routes", {:id=>:serial, :force=>:cascade})
+   -> 0.5308s
+-- create_table("release_links", {:force=>:cascade})
+   -> 0.4065s
+-- create_table("releases", {:id=>:serial, :force=>:cascade})
+   -> 0.5568s
+-- create_table("remote_mirrors", {:id=>:serial, :force=>:cascade})
+   -> 0.9434s
+-- create_table("repository_languages", {:id=>false, :force=>:cascade})
+   -> 0.0666s
+-- create_table("resource_label_events", {:force=>:cascade})
+   -> 0.5308s
+-- create_table("routes", {:id=>:serial, :force=>:cascade})
+   -> 0.4415s
+-- create_table("sent_notifications", {:id=>:serial, :force=>:cascade})
+   -> 0.3070s
+-- create_table("services", {:id=>:serial, :force=>:cascade})
+   -> 0.7211s
+-- create_table("shards", {:id=>:serial, :force=>:cascade})
+   -> 0.4233s
+-- create_table("snippets", {:id=>:serial, :force=>:cascade})
+   -> 0.8864s
+-- create_table("spam_logs", {:id=>:serial, :force=>:cascade})
+   -> 0.2500s
+-- create_table("subscriptions", {:id=>:serial, :force=>:cascade})
+   -> 0.3912s
+-- create_table("suggestions", {:force=>:cascade})
+   -> 0.3737s
+-- create_table("system_note_metadata", {:id=>:serial, :force=>:cascade})
+   -> 0.4474s
+-- create_table("taggings", {:id=>:serial, :force=>:cascade})
+   -> 0.4564s
+-- create_table("tags", {:id=>:serial, :force=>:cascade})
+   -> 0.3093s
+-- create_table("term_agreements", {:id=>:serial, :force=>:cascade})
+   -> 0.2743s
+-- create_table("timelogs", {:id=>:serial, :force=>:cascade})
+   -> 0.3233s
+-- create_table("todos", {:id=>:serial, :force=>:cascade})
+   -> 0.9308s
+-- create_table("trending_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.1828s
+-- create_table("u2f_registrations", {:id=>:serial, :force=>:cascade})
+   -> 0.2169s
+-- create_table("uploads", {:id=>:serial, :force=>:cascade})
+   -> 0.4588s
+-- create_table("user_agent_details", {:id=>:serial, :force=>:cascade})
+   -> 0.2076s
+-- create_table("user_callouts", {:id=>:serial, :force=>:cascade})
+   -> 0.1912s
+-- create_table("user_custom_attributes", {:id=>:serial, :force=>:cascade})
+   -> 0.3982s
+-- create_table("user_interacted_projects", {:id=>false, :force=>:cascade})
+   -> 0.1421s
+-- create_table("user_preferences", {:id=>:serial, :force=>:cascade})
+   -> 0.2326s
+-- create_table("user_statuses", {:primary_key=>"user_id", :id=>:serial, :force=>:cascade})
+   -> 0.3074s
+-- create_table("user_synced_attributes_metadata", {:id=>:serial, :force=>:cascade})
+   -> 0.4224s
+-- create_table("users", {:id=>:serial, :force=>:cascade})
+   -> 1.1349s
+-- create_table("users_star_projects", {:id=>:serial, :force=>:cascade})
+   -> 0.2812s
+-- create_table("web_hook_logs", {:id=>:serial, :force=>:cascade})
+   -> 0.5377s
+-- create_table("web_hooks", {:id=>:serial, :force=>:cascade})
+   -> 0.4973s
+-- add_foreign_key("application_settings", "users", {:column=>"usage_stats_set_by_user_id", :name=>"fk_964370041d", :on_delete=>:nullify})
+   -> 0.4210s
+-- add_foreign_key("badges", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0031s
+-- add_foreign_key("badges", "projects", {:on_delete=>:cascade})
+   -> 0.0382s
+-- add_foreign_key("board_group_recent_visits", "boards", {:on_delete=>:cascade})
+   -> 0.0026s
+-- add_foreign_key("board_group_recent_visits", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0021s
+-- add_foreign_key("board_group_recent_visits", "users", {:on_delete=>:cascade})
+   -> 0.0027s
+-- add_foreign_key("board_project_recent_visits", "boards", {:on_delete=>:cascade})
+   -> 0.0016s
+-- add_foreign_key("board_project_recent_visits", "projects", {:on_delete=>:cascade})
+   -> 0.1322s
+-- add_foreign_key("board_project_recent_visits", "users", {:on_delete=>:cascade})
+   -> 0.0027s
+-- add_foreign_key("boards", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("boards", "projects", {:name=>"fk_f15266b5f9", :on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("chat_teams", "namespaces", {:on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("ci_build_trace_chunks", "ci_builds", {:column=>"build_id", :on_delete=>:cascade})
+   -> 0.0831s
+-- add_foreign_key("ci_build_trace_section_names", "projects", {:on_delete=>:cascade})
+   -> 0.0031s
+-- add_foreign_key("ci_build_trace_sections", "ci_build_trace_section_names", {:column=>"section_name_id", :name=>"fk_264e112c66", :on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("ci_build_trace_sections", "ci_builds", {:column=>"build_id", :name=>"fk_4ebe41f502", :on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("ci_build_trace_sections", "projects", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("ci_builds", "ci_pipelines", {:column=>"auto_canceled_by_id", :name=>"fk_a2141b1522", :on_delete=>:nullify})
+   -> 0.0019s
+-- add_foreign_key("ci_builds", "ci_pipelines", {:column=>"commit_id", :name=>"fk_d3130c9a7f", :on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("ci_builds", "ci_stages", {:column=>"stage_id", :name=>"fk_3a9eaa254d", :on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("ci_builds", "projects", {:name=>"fk_befce0568a", :on_delete=>:cascade})
+   -> 0.0421s
+-- add_foreign_key("ci_builds_metadata", "ci_builds", {:column=>"build_id", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("ci_builds_metadata", "projects", {:on_delete=>:cascade})
+   -> 0.0024s
+-- add_foreign_key("ci_builds_runner_session", "ci_builds", {:column=>"build_id", :on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("ci_group_variables", "namespaces", {:column=>"group_id", :name=>"fk_33ae4d58d8", :on_delete=>:cascade})
+   -> 0.0031s
+-- add_foreign_key("ci_job_artifacts", "ci_builds", {:column=>"job_id", :on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("ci_job_artifacts", "projects", {:on_delete=>:cascade})
+   -> 0.0692s
+-- add_foreign_key("ci_pipeline_chat_data", "chat_names", {:on_delete=>:cascade})
+   -> 0.0033s
+-- add_foreign_key("ci_pipeline_chat_data", "ci_pipelines", {:column=>"pipeline_id", :on_delete=>:cascade})
+   -> 0.0032s
+-- add_foreign_key("ci_pipeline_schedule_variables", "ci_pipeline_schedules", {:column=>"pipeline_schedule_id", :name=>"fk_41c35fda51", :on_delete=>:cascade})
+   -> 0.0028s
+-- add_foreign_key("ci_pipeline_schedules", "projects", {:name=>"fk_8ead60fcc4", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("ci_pipeline_schedules", "users", {:column=>"owner_id", :name=>"fk_9ea99f58d2", :on_delete=>:nullify})
+   -> 0.1389s
+-- add_foreign_key("ci_pipeline_variables", "ci_pipelines", {:column=>"pipeline_id", :name=>"fk_f29c5f4380", :on_delete=>:cascade})
+   -> 0.0026s
+-- add_foreign_key("ci_pipelines", "ci_pipeline_schedules", {:column=>"pipeline_schedule_id", :name=>"fk_3d34ab2e06", :on_delete=>:nullify})
+   -> 0.0025s
+-- add_foreign_key("ci_pipelines", "ci_pipelines", {:column=>"auto_canceled_by_id", :name=>"fk_262d4c2d19", :on_delete=>:nullify})
+   -> 0.0018s
+-- add_foreign_key("ci_pipelines", "merge_requests", {:name=>"fk_a23be95014", :on_delete=>:cascade})
+   -> 0.0031s
+-- add_foreign_key("ci_pipelines", "projects", {:name=>"fk_86635dbd80", :on_delete=>:cascade})
+   -> 0.0316s
+-- add_foreign_key("ci_runner_namespaces", "ci_runners", {:column=>"runner_id", :on_delete=>:cascade})
+   -> 0.0033s
+-- add_foreign_key("ci_runner_namespaces", "namespaces", {:on_delete=>:cascade})
+   -> 0.0038s
+-- add_foreign_key("ci_runner_projects", "projects", {:name=>"fk_4478a6f1e4", :on_delete=>:cascade})
+   -> 0.0026s
+-- add_foreign_key("ci_stages", "ci_pipelines", {:column=>"pipeline_id", :name=>"fk_fb57e6cc56", :on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("ci_stages", "projects", {:name=>"fk_2360681d1d", :on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("ci_trigger_requests", "ci_triggers", {:column=>"trigger_id", :name=>"fk_b8ec8b7245", :on_delete=>:cascade})
+   -> 0.0271s
+-- add_foreign_key("ci_triggers", "projects", {:name=>"fk_e3e63f966e", :on_delete=>:cascade})
+   -> 0.0041s
+-- add_foreign_key("ci_triggers", "users", {:column=>"owner_id", :name=>"fk_e8e10d1964", :on_delete=>:cascade})
+   -> 0.0021s
+-- add_foreign_key("ci_variables", "projects", {:name=>"fk_ada5eb64b3", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("cluster_groups", "clusters", {:on_delete=>:cascade})
+   -> 0.0497s
+-- add_foreign_key("cluster_groups", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("cluster_platforms_kubernetes", "clusters", {:on_delete=>:cascade})
+   -> 0.0024s
+-- add_foreign_key("cluster_projects", "clusters", {:on_delete=>:cascade})
+   -> 0.0024s
+-- add_foreign_key("cluster_projects", "projects", {:on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("cluster_providers_gcp", "clusters", {:on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("clusters", "users", {:on_delete=>:nullify})
+   -> 0.0024s
+-- add_foreign_key("clusters_applications_cert_managers", "clusters", {:on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("clusters_applications_helm", "clusters", {:on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("clusters_applications_ingress", "clusters", {:on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("clusters_applications_jupyter", "clusters", {:on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("clusters_applications_jupyter", "oauth_applications", {:on_delete=>:nullify})
+   -> 0.0018s
+-- add_foreign_key("clusters_applications_knative", "clusters", {:on_delete=>:cascade})
+   -> 0.0016s
+-- add_foreign_key("clusters_applications_prometheus", "clusters", {:on_delete=>:cascade})
+   -> 0.0013s
+-- add_foreign_key("clusters_applications_runners", "ci_runners", {:column=>"runner_id", :name=>"fk_02de2ded36", :on_delete=>:nullify})
+   -> 0.0423s
+-- add_foreign_key("clusters_applications_runners", "clusters", {:on_delete=>:cascade})
+   -> 0.0028s
+-- add_foreign_key("clusters_kubernetes_namespaces", "cluster_projects", {:on_delete=>:nullify})
+   -> 0.0024s
+-- add_foreign_key("clusters_kubernetes_namespaces", "clusters", {:on_delete=>:cascade})
+   -> 0.0021s
+-- add_foreign_key("clusters_kubernetes_namespaces", "projects", {:on_delete=>:nullify})
+   -> 0.0024s
+-- add_foreign_key("container_repositories", "projects")
+   -> 0.0023s
+-- add_foreign_key("deploy_keys_projects", "projects", {:name=>"fk_58a901ca7e", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("deployments", "projects", {:name=>"fk_b9a3851b82", :on_delete=>:cascade})
+   -> 0.0021s
+-- add_foreign_key("environments", "projects", {:name=>"fk_d1c8c1da6a", :on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("events", "projects", {:on_delete=>:cascade})
+   -> 0.0244s
+-- add_foreign_key("events", "users", {:column=>"author_id", :name=>"fk_edfd187b6f", :on_delete=>:cascade})
+   -> 0.0034s
+-- add_foreign_key("fork_network_members", "fork_networks", {:on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("fork_network_members", "projects", {:column=>"forked_from_project_id", :name=>"fk_b01280dae4", :on_delete=>:nullify})
+   -> 0.0023s
+-- add_foreign_key("fork_network_members", "projects", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("fork_networks", "projects", {:column=>"root_project_id", :name=>"fk_e7b436b2b5", :on_delete=>:nullify})
+   -> 0.0386s
+-- add_foreign_key("forked_project_links", "projects", {:column=>"forked_to_project_id", :name=>"fk_434510edb0", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("gpg_key_subkeys", "gpg_keys", {:on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("gpg_keys", "users", {:on_delete=>:cascade})
+   -> 0.0637s
+-- add_foreign_key("gpg_signatures", "gpg_key_subkeys", {:on_delete=>:nullify})
+   -> 0.0041s
+-- add_foreign_key("gpg_signatures", "gpg_keys", {:on_delete=>:nullify})
+   -> 0.0017s
+-- add_foreign_key("gpg_signatures", "projects", {:on_delete=>:cascade})
+   -> 0.0409s
+-- add_foreign_key("group_custom_attributes", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0021s
+-- add_foreign_key("group_group_links", "namespaces", {:column=>"shared_group_id", :on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("group_group_links", "namespaces", {:column=>"shared_with_group_id", :on_delete=>:cascade})
+   -> 0.0013s
+-- add_foreign_key("import_export_uploads", "projects", {:on_delete=>:cascade})
+   -> 0.0110s
+-- add_foreign_key("internal_ids", "namespaces", {:name=>"fk_162941d509", :on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("internal_ids", "projects", {:on_delete=>:cascade})
+   -> 0.0029s
+-- add_foreign_key("issue_assignees", "issues", {:name=>"fk_b7d881734a", :on_delete=>:cascade})
+   -> 0.0037s
+-- add_foreign_key("issue_assignees", "users", {:name=>"fk_5e0c8d9154", :on_delete=>:cascade})
+   -> 0.0034s
+-- add_foreign_key("issue_metrics", "issues", {:on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("issues", "issues", {:column=>"moved_to_id", :name=>"fk_a194299be1", :on_delete=>:nullify})
+   -> 0.0018s
+-- add_foreign_key("issues", "milestones", {:name=>"fk_96b1dd429c", :on_delete=>:nullify})
+   -> 0.0020s
+-- add_foreign_key("issues", "projects", {:name=>"fk_899c8f3231", :on_delete=>:cascade})
+   -> 0.0415s
+-- add_foreign_key("issues", "users", {:column=>"author_id", :name=>"fk_05f1e72feb", :on_delete=>:nullify})
+   -> 0.0016s
+-- add_foreign_key("issues", "users", {:column=>"closed_by_id", :name=>"fk_c63cbf6c25", :on_delete=>:nullify})
+   -> 0.0014s
+-- add_foreign_key("issues", "users", {:column=>"updated_by_id", :name=>"fk_ffed080f01", :on_delete=>:nullify})
+   -> 0.0013s
+-- add_foreign_key("label_priorities", "labels", {:on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("label_priorities", "projects", {:on_delete=>:cascade})
+   -> 0.0082s
+-- add_foreign_key("labels", "namespaces", {:column=>"group_id", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("labels", "projects", {:name=>"fk_7de4989a69", :on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("lfs_file_locks", "projects", {:on_delete=>:cascade})
+   -> 0.0027s
+-- add_foreign_key("lfs_file_locks", "users", {:on_delete=>:cascade})
+   -> 0.0030s
+-- add_foreign_key("lists", "boards", {:name=>"fk_0d3f677137", :on_delete=>:cascade})
+   -> 0.0337s
+-- add_foreign_key("lists", "labels", {:name=>"fk_7a5553d60f", :on_delete=>:cascade})
+   -> 0.0033s
+-- add_foreign_key("members", "users", {:name=>"fk_2e88fb7ce9", :on_delete=>:cascade})
+   -> 0.0033s
+-- add_foreign_key("merge_request_diff_commits", "merge_request_diffs", {:on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("merge_request_diff_files", "merge_request_diffs", {:on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("merge_request_diffs", "merge_requests", {:name=>"fk_8483f3258f", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("merge_request_metrics", "ci_pipelines", {:column=>"pipeline_id", :on_delete=>:cascade})
+   -> 0.0262s
+-- add_foreign_key("merge_request_metrics", "merge_requests", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("merge_request_metrics", "users", {:column=>"latest_closed_by_id", :name=>"fk_ae440388cc", :on_delete=>:nullify})
+   -> 0.0026s
+-- add_foreign_key("merge_request_metrics", "users", {:column=>"merged_by_id", :name=>"fk_7f28d925f3", :on_delete=>:nullify})
+   -> 0.0023s
+-- add_foreign_key("merge_requests", "ci_pipelines", {:column=>"head_pipeline_id", :name=>"fk_fd82eae0b9", :on_delete=>:nullify})
+   -> 0.0028s
+-- add_foreign_key("merge_requests", "merge_request_diffs", {:column=>"latest_merge_request_diff_id", :name=>"fk_06067f5644", :on_delete=>:nullify})
+   -> 0.0023s
+-- add_foreign_key("merge_requests", "milestones", {:name=>"fk_6a5165a692", :on_delete=>:nullify})
+   -> 0.0018s
+-- add_foreign_key("merge_requests", "projects", {:column=>"source_project_id", :name=>"fk_3308fe130c", :on_delete=>:nullify})
+   -> 0.0016s
+-- add_foreign_key("merge_requests", "projects", {:column=>"target_project_id", :name=>"fk_a6963e8447", :on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("merge_requests", "users", {:column=>"assignee_id", :name=>"fk_6149611a04", :on_delete=>:nullify})
+   -> 0.0903s
+-- add_foreign_key("merge_requests", "users", {:column=>"author_id", :name=>"fk_e719a85f8a", :on_delete=>:nullify})
+   -> 0.0023s
+-- add_foreign_key("merge_requests", "users", {:column=>"merge_user_id", :name=>"fk_ad525e1f87", :on_delete=>:nullify})
+   -> 0.0021s
+-- add_foreign_key("merge_requests", "users", {:column=>"updated_by_id", :name=>"fk_641731faff", :on_delete=>:nullify})
+   -> 0.0020s
+-- add_foreign_key("merge_requests_closing_issues", "issues", {:on_delete=>:cascade})
+   -> 0.0185s
+-- add_foreign_key("merge_requests_closing_issues", "merge_requests", {:on_delete=>:cascade})
+   -> 0.0028s
+-- add_foreign_key("milestones", "namespaces", {:column=>"group_id", :name=>"fk_95650a40d4", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("milestones", "projects", {:name=>"fk_9bd0a0c791", :on_delete=>:cascade})
+   -> 0.0039s
+-- add_foreign_key("note_diff_files", "notes", {:column=>"diff_note_id", :on_delete=>:cascade})
+   -> 0.0029s
+-- add_foreign_key("notes", "projects", {:name=>"fk_99e097b079", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("notification_settings", "users", {:name=>"fk_0c95e91db7", :on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("oauth_openid_requests", "oauth_access_grants", {:column=>"access_grant_id", :name=>"fk_oauth_openid_requests_oauth_access_grants_access_grant_id"})
+   -> 0.0012s
+-- add_foreign_key("pages_domains", "projects", {:name=>"fk_ea2f6dfc6f", :on_delete=>:cascade})
+   -> 0.0061s
+-- add_foreign_key("personal_access_tokens", "users")
+   -> 0.0021s
+-- add_foreign_key("pool_repositories", "projects", {:column=>"source_project_id", :on_delete=>:nullify})
+   -> 0.0062s
+-- add_foreign_key("pool_repositories", "shards", {:on_delete=>:restrict})
+   -> 0.0021s
+-- add_foreign_key("project_authorizations", "projects", {:on_delete=>:cascade})
+   -> 0.0027s
+-- add_foreign_key("project_authorizations", "users", {:on_delete=>:cascade})
+   -> 0.0120s
+-- add_foreign_key("project_auto_devops", "projects", {:on_delete=>:cascade})
+   -> 0.0034s
+-- add_foreign_key("project_ci_cd_settings", "projects", {:name=>"fk_24c15d2f2e", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("project_custom_attributes", "projects", {:on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("project_daily_statistics", "projects", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("project_deploy_tokens", "deploy_tokens", {:on_delete=>:cascade})
+   -> 0.0066s
+-- add_foreign_key("project_deploy_tokens", "projects", {:on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("project_error_tracking_settings", "projects", {:on_delete=>:cascade})
+   -> 0.0485s
+-- add_foreign_key("project_features", "projects", {:name=>"fk_18513d9b92", :on_delete=>:cascade})
+   -> 0.0037s
+-- add_foreign_key("project_group_links", "projects", {:name=>"fk_daa8cee94c", :on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("project_import_data", "projects", {:name=>"fk_ffb9ee3a10", :on_delete=>:cascade})
+   -> 0.0024s
+-- add_foreign_key("project_mirror_data", "projects", {:on_delete=>:cascade})
+   -> 0.0147s
+-- add_foreign_key("project_repositories", "projects", {:on_delete=>:cascade})
+   -> 0.0039s
+-- add_foreign_key("project_repositories", "shards", {:on_delete=>:restrict})
+   -> 0.0027s
+-- add_foreign_key("project_statistics", "projects", {:on_delete=>:cascade})
+   -> 0.0034s
+-- add_foreign_key("projects", "pool_repositories", {:name=>"fk_6e5c14658a", :on_delete=>:nullify})
+   -> 0.0021s
+-- add_foreign_key("prometheus_metrics", "projects", {:on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("protected_branch_merge_access_levels", "protected_branches", {:name=>"fk_8a3072ccb3", :on_delete=>:cascade})
+   -> 0.0103s
+-- add_foreign_key("protected_branch_push_access_levels", "protected_branches", {:name=>"fk_9ffc86a3d9", :on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("protected_branches", "projects", {:name=>"fk_7a9c6d93e7", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("protected_tag_create_access_levels", "namespaces", {:column=>"group_id"})
+   -> 0.0022s
+-- add_foreign_key("protected_tag_create_access_levels", "protected_tags", {:name=>"fk_f7dfda8c51", :on_delete=>:cascade})
+   -> 0.0015s
+-- add_foreign_key("protected_tag_create_access_levels", "users")
+   -> 0.0112s
+-- add_foreign_key("protected_tags", "projects", {:name=>"fk_8e4af87648", :on_delete=>:cascade})
+   -> 0.0028s
+-- add_foreign_key("push_event_payloads", "events", {:name=>"fk_36c74129da", :on_delete=>:cascade})
+   -> 0.0113s
+-- add_foreign_key("release_links", "releases", {:on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("releases", "projects", {:name=>"fk_47fe2a0596", :on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("releases", "users", {:column=>"author_id", :name=>"fk_8e4456f90f", :on_delete=>:nullify})
+   -> 0.0016s
+-- add_foreign_key("remote_mirrors", "projects", {:on_delete=>:cascade})
+   -> 0.0108s
+-- add_foreign_key("repository_languages", "projects", {:on_delete=>:cascade})
+   -> 0.0023s
+-- add_foreign_key("resource_label_events", "issues", {:on_delete=>:cascade})
+   -> 0.0053s
+-- add_foreign_key("resource_label_events", "labels", {:on_delete=>:nullify})
+   -> 0.0014s
+-- add_foreign_key("resource_label_events", "merge_requests", {:on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("resource_label_events", "users", {:on_delete=>:nullify})
+   -> 0.0059s
+-- add_foreign_key("services", "projects", {:name=>"fk_71cce407f9", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("snippets", "projects", {:name=>"fk_be41fd4bb7", :on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("subscriptions", "projects", {:on_delete=>:cascade})
+   -> 0.0117s
+-- add_foreign_key("suggestions", "notes", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("system_note_metadata", "notes", {:name=>"fk_d83a918cb1", :on_delete=>:cascade})
+   -> 0.0014s
+-- add_foreign_key("term_agreements", "application_setting_terms", {:column=>"term_id"})
+   -> 0.0051s
+-- add_foreign_key("term_agreements", "users", {:on_delete=>:cascade})
+   -> 0.0078s
+-- add_foreign_key("timelogs", "issues", {:name=>"fk_timelogs_issues_issue_id", :on_delete=>:cascade})
+   -> 0.0080s
+-- add_foreign_key("timelogs", "merge_requests", {:name=>"fk_timelogs_merge_requests_merge_request_id", :on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("todos", "namespaces", {:column=>"group_id", :name=>"fk_a27c483435", :on_delete=>:cascade})
+   -> 0.0149s
+-- add_foreign_key("todos", "notes", {:name=>"fk_91d1f47b13", :on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("todos", "projects", {:name=>"fk_45054f9c45", :on_delete=>:cascade})
+   -> 0.0061s
+-- add_foreign_key("todos", "users", {:column=>"author_id", :name=>"fk_ccf0373936", :on_delete=>:cascade})
+   -> 0.0082s
+-- add_foreign_key("todos", "users", {:name=>"fk_d94154aa95", :on_delete=>:cascade})
+   -> 0.0018s
+-- add_foreign_key("trending_projects", "projects", {:on_delete=>:cascade})
+   -> 0.0063s
+-- add_foreign_key("u2f_registrations", "users")
+   -> 0.0019s
+-- add_foreign_key("user_callouts", "users", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("user_custom_attributes", "users", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("user_interacted_projects", "projects", {:on_delete=>:cascade})
+   -> 0.0020s
+-- add_foreign_key("user_interacted_projects", "users", {:on_delete=>:cascade})
+   -> 0.0031s
+-- add_foreign_key("user_preferences", "users", {:on_delete=>:cascade})
+   -> 0.0025s
+-- add_foreign_key("user_statuses", "users", {:on_delete=>:cascade})
+   -> 0.0022s
+-- add_foreign_key("user_synced_attributes_metadata", "users", {:on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("users", "application_setting_terms", {:column=>"accepted_term_id", :name=>"fk_789cd90b35", :on_delete=>:cascade})
+   -> 0.0017s
+-- add_foreign_key("users_star_projects", "projects", {:name=>"fk_22cd27ddfc", :on_delete=>:cascade})
+   -> 0.0308s
+-- add_foreign_key("web_hook_logs", "web_hooks", {:on_delete=>:cascade})
+   -> 0.0019s
+-- add_foreign_key("web_hooks", "projects", {:name=>"fk_0c8ca6d9d1", :on_delete=>:cascade})
+   -> 0.0020s
+== 20181228175414 InitSchema: migrated (99.1610s) =============================
+
+== 20190102152410 DeleteInconsistentInternalIdRecords2: migrating =============
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- execute("RESET ALL")
+   -> 0.0003s
+== 20190102152410 DeleteInconsistentInternalIdRecords2: migrated (0.1706s) ====
+
+== 20190103140724 MakeLegacyFalseDefault: migrating ===========================
+-- change_column_default(:cluster_providers_gcp, :legacy_abac, {:from=>true, :to=>false})
+   -> 0.0039s
+== 20190103140724 MakeLegacyFalseDefault: migrated (0.0039s) ==================
+
+== 20190104182041 CleanupLegacyArtifactMigration: migrating ===================
+== 20190104182041 CleanupLegacyArtifactMigration: migrated (0.1029s) ==========
+
+== 20190107151020 AddServicesTypeIndex: migrating =============================
+-- index_exists?(:services, :type)
+   -> 0.0045s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:services, :type, {:algorithm=>:concurrently})
+   -> 0.0029s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:services, :type, {:algorithm=>:concurrently})
+   -> 0.2802s
+-- execute("RESET ALL")
+   -> 0.0003s
+== 20190107151020 AddServicesTypeIndex: migrated (0.2887s) ====================
+
+== 20190108192941 RemovePartialIndexFromCiBuildsArtifactsFile: migrating ======
+-- transaction_open?()
+   -> 0.0000s
+-- indexes(:ci_builds)
+   -> 0.0140s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- remove_index(:ci_builds, {:algorithm=>:concurrently, :name=>"partial_index_ci_builds_on_id_with_legacy_artifacts"})
+   -> 0.0582s
+-- execute("RESET ALL")
+   -> 0.0004s
+== 20190108192941 RemovePartialIndexFromCiBuildsArtifactsFile: migrated (0.0735s) 
+
+== 20190109153125 AddMergeRequestExternalDiffs: migrating =====================
+-- add_column(:merge_request_diffs, :external_diff, :string, {})
+   -> 0.0019s
+-- add_column(:merge_request_diffs, :external_diff_store, :integer, {})
+   -> 0.0006s
+-- add_column(:merge_request_diffs, :stored_externally, :boolean, {})
+   -> 0.0005s
+-- add_column(:merge_request_diff_files, :external_diff_offset, :integer, {})
+   -> 0.0017s
+-- add_column(:merge_request_diff_files, :external_diff_size, :integer, {})
+   -> 0.0007s
+-- change_column_null(:merge_request_diff_files, :diff, true)
+   -> 0.0006s
+== 20190109153125 AddMergeRequestExternalDiffs: migrated (0.0063s) ============
+
+== 20190114172110 AddDomainToCluster: migrating ===============================
+-- add_column(:clusters, :domain, :string, {})
+   -> 0.0009s
+== 20190114172110 AddDomainToCluster: migrated (0.0009s) ======================
+
+== 20190115054215 MigrateDeleteContainerRepositoryWorker: migrating ===========
+== 20190115054215 MigrateDeleteContainerRepositoryWorker: migrated (0.0003s) ==
+
+== 20190115054216 AddErrorNotificationSentToRemoteMirrors: migrating ==========
+-- add_column(:remote_mirrors, :error_notification_sent, :boolean, {})
+   -> 0.0016s
+== 20190115054216 AddErrorNotificationSentToRemoteMirrors: migrated (0.0017s) =
+
+== 20190115092821 AddColumnsProjectErrorTrackingSettings: migrating ===========
+-- add_column(:project_error_tracking_settings, :project_name, :string, {})
+   -> 0.0014s
+-- add_column(:project_error_tracking_settings, :organization_name, :string, {})
+   -> 0.0005s
+-- change_column_default(:project_error_tracking_settings, :enabled, {:from=>true, :to=>false})
+   -> 0.0037s
+-- change_column_null(:project_error_tracking_settings, :api_url, true)
+   -> 0.0004s
+== 20190115092821 AddColumnsProjectErrorTrackingSettings: migrated (0.0062s) ==
+
+== 20190116234221 AddSortingFieldsToUserPreference: migrating =================
+-- add_column(:user_preferences, :issues_sort, :string, {})
+   -> 0.0309s
+-- add_column(:user_preferences, :merge_requests_sort, :string, {})
+   -> 0.0007s
+== 20190116234221 AddSortingFieldsToUserPreference: migrated (0.0317s) ========
+
+== 20190124200344 MigrateStorageMigratorSidekiqQueue: migrating ===============
+== 20190124200344 MigrateStorageMigratorSidekiqQueue: migrated (0.0003s) ======
+
+== 20190130091630 AddLocalCachedMarkdownVersion: migrating ====================
+-- add_column(:application_settings, :local_markdown_version, :integer, {:default=>0, :null=>false})
+   -> 0.0046s
+== 20190130091630 AddLocalCachedMarkdownVersion: migrated (0.0047s) ===========
+
+== 20190131122559 FixNullTypeLabels: migrating ================================
+-- transaction_open?()
+   -> 0.0000s
+-- exec_query("SELECT COUNT(*) AS count FROM \"labels\" WHERE \"labels\".\"project_id\" IS NOT NULL AND \"labels\".\"template\" = FALSE AND \"labels\".\"type\" IS NULL")
+   -> 0.0013s
+== 20190131122559 FixNullTypeLabels: migrated (0.0019s) =======================
+
+== 20190204115450 MigrateAutoDevOpsDomainToClusterDomain: migrating ===========
+-- execute("UPDATE clusters\nSET domain = project_auto_devops.domain\nFROM cluster_projects, project_auto_devops\nWHERE\n  cluster_projects.cluster_id = clusters.id\n  AND project_auto_devops.project_id = cluster_projects.project_id\n  AND project_auto_devops.domain != ''\n")
+   -> 0.0026s
+== 20190204115450 MigrateAutoDevOpsDomainToClusterDomain: migrated (0.0027s) ==
+
+== 20190206193120 AddIndexToTags: migrating ===================================
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:tags, :name, {:name=>"index_tags_on_name_trigram", :using=>:gin, :opclass=>{:name=>:gin_trgm_ops}, :algorithm=>:concurrently})
+   -> 0.0029s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0003s
+-- add_index(:tags, :name, {:name=>"index_tags_on_name_trigram", :using=>:gin, :opclass=>{:name=>:gin_trgm_ops}, :algorithm=>:concurrently})
+   -> 0.0109s
+-- execute("RESET ALL")
+   -> 0.0004s
+== 20190206193120 AddIndexToTags: migrated (0.0154s) ==========================
+
+== 20190211131150 AddStateIdToIssuables: migrating ============================
+-- add_column(:issues, :state_id, :integer, {:limit=>2})
+   -> 0.0013s
+-- add_column(:merge_requests, :state_id, :integer, {:limit=>2})
+   -> 0.0006s
+== 20190211131150 AddStateIdToIssuables: migrated (0.0020s) ===================
+
+== 20190214112022 ScheduleSyncIssuablesStateId: migrating =====================
+== 20190214112022 ScheduleSyncIssuablesStateId: migrated (0.0396s) ============
+
+== 20190215154930 AddMergePipelinesEnabledToCiCdSettings: migrating ===========
+-- add_column(:project_ci_cd_settings, :merge_pipelines_enabled, :boolean, {})
+   -> 0.0016s
+== 20190215154930 AddMergePipelinesEnabledToCiCdSettings: migrated (0.0016s) ==
+
+== 20190218134158 AddMaskedToCiVariables: migrating ===========================
+-- add_column(:ci_variables, :masked, :boolean, {:default=>false, :limit=>nil, :null=>false})
+   -> 0.0057s
+== 20190218134158 AddMaskedToCiVariables: migrated (0.0058s) ==================rake aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+PG::DuplicateTable: ERROR:  relation "merge_request_assignees" already exists
+/opt/gitlab/embedded/service/gitlab-rails/db/migrate/20190315191339_create_merge_request_assignees_table.rb:11:in `up'
+/opt/gitlab/embedded/service/gitlab-rails/lib/tasks/gitlab/db.rake:49:in `block (3 levels) in <top (required)>'
+/opt/gitlab/embedded/bin/bundle:23:in `load'
+/opt/gitlab/embedded/bin/bundle:23:in `<main>'
+
+Caused by:
+ActiveRecord::StatementInvalid: PG::DuplicateTable: ERROR:  relation "merge_request_assignees" already exists
+/opt/gitlab/embedded/service/gitlab-rails/db/migrate/20190315191339_create_merge_request_assignees_table.rb:11:in `up'
+/opt/gitlab/embedded/service/gitlab-rails/lib/tasks/gitlab/db.rake:49:in `block (3 levels) in <top (required)>'
+/opt/gitlab/embedded/bin/bundle:23:in `load'
+/opt/gitlab/embedded/bin/bundle:23:in `<main>'
+
+Caused by:
+PG::DuplicateTable: ERROR:  relation "merge_request_assignees" already exists
+/opt/gitlab/embedded/service/gitlab-rails/db/migrate/20190315191339_create_merge_request_assignees_table.rb:11:in `up'
+/opt/gitlab/embedded/service/gitlab-rails/lib/tasks/gitlab/db.rake:49:in `block (3 levels) in <top (required)>'
+/opt/gitlab/embedded/bin/bundle:23:in `load'
+/opt/gitlab/embedded/bin/bundle:23:in `<main>'
+Tasks: TOP => db:migrate
+(See full trace by running task with --trace)
+
+
+== 20190218134209 AddMaskedToCiGroupVariables: migrating ======================
+-- add_column(:ci_group_variables, :masked, :boolean, {:default=>false, :limit=>nil, :null=>false})
+   -> 0.0069s
+== 20190218134209 AddMaskedToCiGroupVariables: migrated (0.0070s) =============
+
+== 20190219201635 AddAssetProxySettings: migrating ============================
+-- add_column(:application_settings, :asset_proxy_enabled, :boolean, {:default=>false, :null=>false})
+   -> 0.0030s
+-- add_column(:application_settings, :asset_proxy_url, :string, {})
+   -> 0.0005s
+-- add_column(:application_settings, :asset_proxy_whitelist, :text, {})
+   -> 0.0006s
+-- add_column(:application_settings, :encrypted_asset_proxy_secret_key, :text, {})
+   -> 0.0005s
+-- add_column(:application_settings, :encrypted_asset_proxy_secret_key_iv, :string, {})
+   -> 0.0006s
+== 20190219201635 AddAssetProxySettings: migrated (0.0054s) ===================
+
+== 20190220142344 AddEmailHeaderAndFooterEnabledFlagToAppearancesTable: migrating 
+-- add_column(:appearances, :email_header_and_footer_enabled, :boolean, {:default=>false, :limit=>nil, :null=>false})
+   -> 0.0076s
+== 20190220142344 AddEmailHeaderAndFooterEnabledFlagToAppearancesTable: migrated (0.0077s) 
+
+== 20190220150130 AddExtraShasToCiPipelines: migrating ========================
+-- add_column(:ci_pipelines, :source_sha, :binary, {})
+   -> 0.0016s
+-- add_column(:ci_pipelines, :target_sha, :binary, {})
+   -> 0.0015s
+== 20190220150130 AddExtraShasToCiPipelines: migrated (0.0033s) ===============
+
+== 20190222051615 AddIndexesForMergeRequestDiffsQuery: migrating ==============
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:merge_request_metrics, :latest_closed_at, {:where=>"latest_closed_at IS NOT NULL", :algorithm=>:concurrently})
+   -> 0.0068s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:merge_request_metrics, :latest_closed_at, {:where=>"latest_closed_at IS NOT NULL", :algorithm=>:concurrently})
+   -> 0.0727s
+-- execute("RESET ALL")
+   -> 0.0003s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:merge_request_metrics, [:merge_request_id, :merged_at], {:where=>"merged_at IS NOT NULL", :algorithm=>:concurrently})
+   -> 0.0066s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:merge_request_metrics, [:merge_request_id, :merged_at], {:where=>"merged_at IS NOT NULL", :algorithm=>:concurrently})
+   -> 0.2401s
+-- execute("RESET ALL")
+   -> 0.0003s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:merge_request_diffs, [:merge_request_id, :id], {:name=>"index_merge_request_diffs_on_merge_request_id_and_id_partial", :where=>"NOT stored_externally OR stored_externally IS NULL", :algorithm=>:concurrently})
+   -> 0.0021s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:merge_request_diffs, [:merge_request_id, :id], {:name=>"index_merge_request_diffs_on_merge_request_id_and_id_partial", :where=>"NOT stored_externally OR stored_externally IS NULL", :algorithm=>:concurrently})
+   -> 0.1132s
+-- execute("RESET ALL")
+   -> 0.0003s
+== 20190222051615 AddIndexesForMergeRequestDiffsQuery: migrated (0.4447s) =====
+
+== 20190225152525 AddAutoDevOpsEnabledToNamespaces: migrating =================
+-- add_column(:namespaces, :auto_devops_enabled, :boolean, {})
+   -> 0.0014s
+== 20190225152525 AddAutoDevOpsEnabledToNamespaces: migrated (0.0014s) ========
+
+== 20190225160300 StealEncryptRunnersTokens: migrating ========================
+== 20190225160300 StealEncryptRunnersTokens: migrated (0.0008s) ===============
+
+== 20190225160301 AddRunnerTokensIndexes: migrating ===========================
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:ci_runners, :token_encrypted, {:algorithm=>:concurrently})
+   -> 0.0042s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:ci_runners, :token_encrypted, {:algorithm=>:concurrently})
+   -> 0.1324s
+-- execute("RESET ALL")
+   -> 0.0003s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:projects, :runners_token_encrypted, {:algorithm=>:concurrently})
+   -> 0.0141s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:projects, :runners_token_encrypted, {:algorithm=>:concurrently})
+   -> 0.1759s
+-- execute("RESET ALL")
+   -> 0.0005s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:namespaces, :runners_token_encrypted, {:unique=>true, :algorithm=>:concurrently})
+   -> 0.0098s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0004s
+-- add_index(:namespaces, :runners_token_encrypted, {:unique=>true, :algorithm=>:concurrently})
+   -> 0.1305s
+-- execute("RESET ALL")
+   -> 0.0004s
+== 20190225160301 AddRunnerTokensIndexes: migrated (0.4709s) ==================
+
+== 20190228192410 AddMultiLineAttributesToSuggestion: migrating ===============
+-- add_column(:suggestions, :lines_above, :integer, {:default=>0, :limit=>nil, :null=>false})
+   -> 0.0724s
+-- add_column(:suggestions, :lines_below, :integer, {:default=>0, :limit=>nil, :null=>false})
+   -> 0.0577s
+-- add_column(:suggestions, :outdated, :boolean, {:default=>false, :limit=>nil, :null=>false})
+   -> 0.0742s
+== 20190228192410 AddMultiLineAttributesToSuggestion: migrated (0.2048s) ======
+
+== 20190301081611 MigrateProjectMigrateSidekiqQueue: migrating ================
+== 20190301081611 MigrateProjectMigrateSidekiqQueue: migrated (0.0004s) =======
+
+== 20190301182457 AddExternalHostnameToIngressAndKnative: migrating ===========
+-- add_column(:clusters_applications_ingress, :external_hostname, :string, {})
+   -> 0.0015s
+-- add_column(:clusters_applications_knative, :external_hostname, :string, {})
+   -> 0.0006s
+== 20190301182457 AddExternalHostnameToIngressAndKnative: migrated (0.0022s) ==
+
+== 20190312071108 AddDetectedRepositoryLanguagesToProjects: migrating =========
+-- add_column(:projects, :detected_repository_languages, :boolean, {})
+   -> 0.0016s
+== 20190312071108 AddDetectedRepositoryLanguagesToProjects: migrated (0.0017s) 
+
+== 20190312113229 AddRemoveAtToPagesDomains: migrating ========================
+-- add_column(:pages_domains, :remove_at, :datetime_with_timezone, {})
+   -> 0.0013s
+== 20190312113229 AddRemoveAtToPagesDomains: migrated (0.0014s) ===============
+
+== 20190312113634 AddRemoveAtIndexToPagesDomains: migrating ===================
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:pages_domains, :remove_at, {:algorithm=>:concurrently})
+   -> 0.0037s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:pages_domains, :remove_at, {:algorithm=>:concurrently})
+   -> 0.1691s
+-- execute("RESET ALL")
+   -> 0.0003s
+== 20190312113634 AddRemoveAtIndexToPagesDomains: migrated (0.1738s) ==========
+
+== 20190313092516 CleanUpNoteableIdForNotesOnCommits: migrating ===============
+-- transaction_open?()
+   -> 0.0000s
+-- indexes(:notes)
+   -> 0.0096s
+-- transaction_open?()
+   -> 0.0000s
+-- index_exists?(:notes, :id, {:where=>"noteable_type = 'Commit' AND noteable_id IS NOT NULL", :name=>"index_notes_on_commit_with_null_noteable_id", :algorithm=>:concurrently})
+   -> 0.0061s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- add_index(:notes, :id, {:where=>"noteable_type = 'Commit' AND noteable_id IS NOT NULL", :name=>"index_notes_on_commit_with_null_noteable_id", :algorithm=>:concurrently})
+   -> 0.1386s
+-- execute("RESET ALL")
+   -> 0.0003s
+-- transaction_open?()
+   -> 0.0000s
+-- exec_query("SELECT COUNT(*) AS count FROM \"notes\" WHERE \"notes\".\"noteable_type\" = 'Commit' AND \"notes\".\"noteable_id\" IS NOT NULL")
+   -> 0.0013s
+-- transaction_open?()
+   -> 0.0000s
+-- indexes(:notes)
+   -> 0.0073s
+-- execute("SET statement_timeout TO 0")
+   -> 0.0002s
+-- remove_index(:notes, {:algorithm=>:concurrently, :name=>"index_notes_on_commit_with_null_noteable_id"})
+   -> 0.0751s
+-- execute("RESET ALL")
+   -> 0.0004s
+== 20190313092516 CleanUpNoteableIdForNotesOnCommits: migrated (0.2424s) ======
+
+== 20190315191339 CreateMergeRequestAssigneesTable: migrating =================
+-- create_table(:merge_request_assignees, {:id=>:integer})
+STDERR: 
+---- End output of "bash"  "/tmp/chef-script20200705-22-ifsggo" ----
+Ran "bash"  "/tmp/chef-script20200705-22-ifsggo" returned 1

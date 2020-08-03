@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  labels:
+    app: reddit
+    component: ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reddit
+      component: ui
+  template:
+    metadata:
+      name: ui
+      labels:
+        app: reddit
+        component: ui
+    spec:
+      containers:
+      - image: json1/ui:latest
+        name: ui   
+        env:
+        - name: POST_SERVICE_HOST
+          value: post
+        - name: POST_SERVICE_PORT
+          value: "5000"
+        - name: COMMENT_SERVICE_HOST
+          value: comment
+        - name: COMMENT_SERVICE_PORT
+          value: "9292"
