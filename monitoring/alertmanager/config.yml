@@ -1,5 +1,5 @@
 global:
-  slack_api_url: 'https://hooks.slack.com/services/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'
+  slack_api_url: 'https://hooks.slack.com/services/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'
 
 route:
   receiver: 'slack-notifications'
@@ -7,4 +7,4 @@ route:
 receivers:
 - name: 'slack-notifications'
   slack_configs:
-  - channel: '#dmitriy_ugai'
+  - channel: '#alertmanager'
