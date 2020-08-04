@@ -14,6 +14,7 @@ udmitry microservices repository
     создал контейнер reddit
     проверил его работоспособность
     контейнер загружен на DockerHub
+    https://hub.docker.com/repository/docker/json1/otus-reddit
 
 ДЗ 16
 
