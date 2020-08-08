@@ -70,7 +70,24 @@ Prometheus
 
     Определил в docker/docker-compose.yml новый сервис Exporters
 
-    Добавил отслеживание за новым сервисом в Prometheus
+Д.З Логирование приложений 
 
-    Залил образу на docker hub https://hub.docker.com/u/json1
+    - развернул EFK
+    - настроил docker-compose на вывод логов stdout в fluentd для контейнеров post и ui.
+    - добавил фильтр с регулярным выражением для ui.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
