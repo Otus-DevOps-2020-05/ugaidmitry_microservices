@@ -5,6 +5,8 @@ services:
     ports:
       - "24224:24224"
       - "24224:24224/udp"
+    volumes:
+      - ./fluentd/fluent.conf:/fluentd/etc/fluent.conf   
     networks:
       back-net:
         aliases:
@@ -35,17 +37,6 @@ services:
         aliases:
         - kibana
 
-  zipkin:
-    image: openzipkin/zipkin
-    ports:
-      - "9411:9411"
-    networks:
-      back-net:
-        aliases:
-        - zipkin
-      front-net:
-        aliases:
-        - zipkin
 
 volumes:
   

@@ -1,7 +1,10 @@
 version: '3.3'
 services:
   post_db:
-    image: mongo:${MONGOVER}
+    image: mongo:latest
+    hostname: post_db
+    ports:
+      - "27017:27017"  
     volumes:
       - post_db:/data/db
     networks:
@@ -10,15 +13,19 @@ services:
         - post_db
         - comment_db
   ui:
-    build: ./ui
-    image: ${USERNAME}/ui:${UIVER}
+    image: json1/ui:latest
     ports:
-      - ${UIHOSTPORT}:${UICONTAINERPORT}/tcp
+      - ${UI_HOSTPORT}:${UI_CONTAINERPORT}/tcp
     networks:
       front-net:
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.ui
+
   post:
-    build: ./post-py
-    image: ${USERNAME}/post:${POSTVER}
+    image: json1/post-py:latest
     networks:
       back-net:
         aliases:
@@ -26,9 +33,16 @@ services:
       front-net:
         aliases:
         - post
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: localhost:24224
+        tag: service.post
+
   comment:
-    build: ./comment
-    image: ${USERNAME}/comment:${COMMENTVER}
+    image: json1/comment:latest
+
+  
     networks:
       back-net:
         aliases:
@@ -36,6 +50,7 @@ services:
       front-net:
         aliases:
         - comment
+  
 
 volumes:
   post_db:
@@ -45,9 +60,9 @@ networks:
     driver: bridge
     ipam:
      config:
-     - subnet: 10.0.1.0/24
+     - subnet: 10.0.2.0/24
   front-net:
     driver: bridge
     ipam:
      config:
-     - subnet: 10.0.2.0/24
+     - subnet: 10.0.1.0/24

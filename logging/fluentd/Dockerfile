@@ -1,4 +1,7 @@
-FROM fluent/fluentd:v0.12
-RUN gem install fluent-plugin-elasticsearch --no-rdoc --no-ri --version 1.9.5
-RUN gem install fluent-plugin-grok-parser --no-rdoc --no-ri --version 1.0.0
+FROM fluent/fluentd:latest
+RUN fluent-gem install fluent-plugin-elasticsearch  --no-ri --no-rdoc
+RUN fluent-gem install fluent-plugin-grok-parser --no-rdoc --no-ri 
 ADD fluent.conf /fluentd/etc
+
+
+
