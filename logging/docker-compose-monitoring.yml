@@ -1,0 +1,123 @@
+version: '3.3'
+services:
+  prometheus:
+    image: json1/prom:1.0
+    ports:
+      - '9090:9090'
+    volumes:
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention=1d'
+    networks:
+      back-net:
+        aliases:
+        - prometheus
+      front-net:
+        aliases:
+        - prometheus
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:${BLACKBOX_EXPORTER_VER}
+    ports:
+      - '9115:9115'
+    networks:
+      back-net:
+        aliases:
+        - blackbox-exporter
+      front-net:
+        aliases:
+        - blackbox-exporter
+
+  cadvisor:
+    image: google/cadvisor
+    volumes:
+      - '/:/rootfs:ro'
+      - '/var/run:/var/run:rw'
+      - '/sys:/sys:ro'
+      - '/var/lib/docker/:/var/lib/docker:ro'
+    ports:
+      - '8080:8080'
+    networks:
+      back-net:
+        aliases:
+        - cadvisor
+
+  grafana:
+    image: grafana/grafana:6.5.0
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    networks:
+      back-net:
+        aliases:
+        - grafana
+
+  mongodb-exporter:
+    image: ssheehy/mongodb-exporter
+  
+      
+    ports:
+      - 9216:9216
+    networks:
+      back-net:
+        aliases:
+        - mongodb-exporter
+      front-net:
+        aliases:
+        - mongodb-exporter
+
+  node-exporter:
+        image: prom/node-exporter
+        volumes:
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /:/rootfs:ro
+        ports:
+            - 9100:9100  
+        networks:
+           back-net:
+             aliases:
+               - node-exporter
+           front-net:
+              aliases:
+               - node-exporter   
+
+
+
+  alertmanager:
+    image: ${USER_NAME}/alertmanager:${ALERTMANAGER_VER}
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+    ports:
+      - 9093:9093
+    networks:
+     back-net:
+      aliases:
+        - prometheus
+    front-net:
+      aliases:
+       - prometheus
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  back-net:
+    driver: bridge
+    ipam:
+     config:
+     - subnet: 10.0.2.0/24
+  front-net:
+    driver: bridge
+    ipam:
+     config:
+     - subnet: 10.0.1.0/24
